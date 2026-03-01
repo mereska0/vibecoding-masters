@@ -17,7 +17,7 @@ import torch.nn.functional as F
 from rdkit import Chem
 from rdkit.Chem import Draw
 from rdkit.Chem import AllChem
-
+from rdkit.Chem import Descriptors, Lipinski
 # Работа с графами
 import torch_geometric
 from torch_geometric.data import Data, Dataset, Batch
@@ -35,11 +35,11 @@ def seed_everything(seed=42):
 
 seed_everything()
 
-df = pd.read_csv('/kaggle/input/competitions/rascar-ai-chem-hack/train.csv')
+df = pd.read_csv('train.csv')
 
 print(f"Размер датасета: {df.shape}")
 print("Пример данных:")
-display(df.head())
+print(df.head())
 
 PERMITTED_ATOM_TYPES = ['C', 'N', 'O', 'S', 'F', 'Cl', 'Br', 'I', 'P', 'Unknown']
 
